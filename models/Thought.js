@@ -13,6 +13,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
+      // Use getter method to format date
       get: timestamp => new Date(timestamp).toLocaleDateString(),
     },
     username: {
