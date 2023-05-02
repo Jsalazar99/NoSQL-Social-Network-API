@@ -12,7 +12,7 @@ const friendCount = async () => {
   const numberOfFriends = await User.aggregate()
     .count('friendCount')
   return numberOfFriends;
-}
+} 
 
 module.exports = {
 
