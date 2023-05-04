@@ -1,6 +1,6 @@
 // ObjectId() method for converting ID string into an ObjectId for querying database
 const { ObjectId } = require('mongoose').Types;
-const { Thought, User } = require('../models');
+const { User } = require('../models');
 
 const userCount = async () => {
   const numberOfUsers = await User.aggregate()
@@ -84,18 +84,6 @@ module.exports = {
         return res.status(404).json({ message: 'No such user exists' })
       }
 
-      /* const course = await Course.findOneAndUpdate(
-        { students: req.params.studentId },
-        { $pull: { students: req.params.studentId } },
-        { new: true }
-      ); 
-
-      if (!course) {
-        return res.status(404).json({
-          message: 'Student deleted, but no courses found',
-        });
-      } */
-
       res.json({ message: 'User successfully deleted' });
     } catch (err) {
       console.log(err);
@@ -103,7 +91,7 @@ module.exports = {
     }
   },
 
-  // adding Friends item to user
+  // adding Friend to a User
   async addFriend(req, res) {
     console.log('You are adding a friend');
     console.log(req.body);
@@ -126,7 +114,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Remove assignment from a student
+  // Remove friend from a User
   async removeFriend(req, res) {
     console.log('You are removing a friend');
     console.log(req.body);
