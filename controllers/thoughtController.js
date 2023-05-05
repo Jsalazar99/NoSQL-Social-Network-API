@@ -72,23 +72,39 @@ module.exports = {
 
   // Create a reaction
   async createReaction(req, res) {
+    const thoughtId = req.params.thoughtId;
     try {
-      const reaction = await Reaction.create(req.body);
+      const thought = await Thought.findById(thoughtId);
+      const reaction = thought.reaction.create(req.body);
+
+      thought.reaction.push(reaction);
+      await thought.save();
       res.json(reaction);
     } catch (err) {
-      console.log(err);
-      return res.status(500).json(err);
+      res.status(500).json(err);
     }
   },
+
   // Delete a reaction by ID
   async deleteReaction(req, res) {
     try {
-      const reaction = await Reaction.findOneAndDelete({ _id: req.params.objectId });
+      const { thoughtId, reactionId } = req.params;
+      const thought = await Thought.findById(thoughtId);
+
+      if (!thought) {
+        return res.status(404).json({ message: 'Thought not found' });
+      }
+
+      const reaction = thought.reactions.id(reactionId);
 
       if (!reaction) {
-        return res.status(404).json({ message: 'None with that ID' });
+        return res.status(404).json({ message: 'Reaction not found' });
       }
-      res.json(reaction);
+
+      await reaction.remove();
+      await thought.save();
+
+      res.json({ message: 'Reaction deleted' });
     } catch (err) {
       res.status(500).json(err);
     }
