@@ -1,8 +1,6 @@
 # 18 NoSQL: Social Network API
 
-MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. 
-
-The following application is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. 
+This codebase is an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. 
 
 This uses Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the [Express.js](https://www.npmjs.com/package/express) and [Mongoose](https://www.npmjs.com/package/mongoose) packages, this code uses the native JavaScript `Date` object to format timestamps.
 
@@ -28,6 +26,19 @@ THEN I am able to successfully create, update, and delete users and thoughts in 
 WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
+
+## Application Demo 
+* [GitHub Repository](https://github.com/Jsalazar99/NoSQL-Social-Network-API) containing the application code.
+
+* A [walkthrough video](https://drive.google.com/file/d/1MJSRpJ-Id2gJDrA2AHlGxEM6vSnSogV5/view) that demonstrates the functionality.
+
+* Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
+
+* Includes schema settings for User and Thought models as outlined in the instructions.
+
+* Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
+
+* Uses functionality to format queried timestamps properly.
 
 ## Mock Up
 
@@ -143,17 +154,3 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 
 * `POST` to create a reaction stored in a single thought's `reactions` array field
 * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
-
-
-## Application Demo 
-* [GitHub Repository](https://github.com/Jsalazar99/NoSQL-Social-Network-API) containing the application code.
-
-* A walkthrough video that demonstrates the functionality (link should in included).
-
-  * Uses the [Mongoose package](https://www.npmjs.com/package/mongoose) to connect to a MongoDB database.
-
-  * Includes schema settings for User and Thought models as outlined in the instructions.
-
-  * Includes Reactions as the `reaction` field's subdocument schema in the Thought model.
-
-  * Uses functionality to format queried timestamps properly.
